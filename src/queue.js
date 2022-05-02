@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require("../extensions/index.js");
 
 // const { ListNode } = require('../extensions/list-node.js');
 
@@ -14,23 +14,63 @@ const { NotImplementedError } = require('../extensions/index.js');
  * queue.getUnderlyingList() // returns { value: 3, next: null }
  */
 class Queue {
-
-  getUnderlyingList() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  constructor() {
+    this.list = ``;
   }
 
-  enqueue(/* value */) {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+  getUnderlyingList() {
+    console.log(this.list);
+    return this.list;
+  }
+
+  enqueue(value) {
+    if (!this.list) {
+      this.list = { value: value, next: null };
+      console.log(`start`);
+    } else {
+      console.log(`add`);
+      let thisNode = this.list;
+      let nextNode = thisNode.next;
+      while (nextNode) {
+        console.log(`1`);
+        thisNode = thisNode.next;
+        console.log(thisNode);
+        nextNode = thisNode.next;
+        console.log(nextNode);
+      }
+      nextNode = { value: value, next: null };
+      thisNode.next = nextNode;
+      console.log(thisNode);
+    }
+    return this.list;
   }
 
   dequeue() {
-    throw new NotImplementedError('Not implemented');
-    // remove line with error and write your code here
+    if (this.list) {
+      let thisNode = this.list.next;
+      console.log(thisNode);
+      let temp = this.list.value;
+      console.log(temp);
+      this.list = thisNode;
+      console.log(this.list);
+      return temp;
+    }
   }
 }
 
 module.exports = {
-  Queue
+  Queue,
 };
+
+// const queue = new Queue();
+// queue.getUnderlyingList();
+// queue.enqueue(5);
+// queue.getUnderlyingList();
+// queue.enqueue(6);
+// queue.getUnderlyingList();
+// queue.enqueue(7);
+// queue.getUnderlyingList();
+// queue.dequeue(); ///5
+// queue.getUnderlyingList();
+// queue.dequeue(); ///6
+// queue.getUnderlyingList();
